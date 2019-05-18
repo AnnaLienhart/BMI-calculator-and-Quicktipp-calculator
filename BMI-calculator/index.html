@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>BMI-Rechner</title>
+    <script type="text/javascript">
+        var height = prompt("Gib deine Körpergröße in cm ein.");
+        var weight = prompt("Gib dein Gewicht in kg ein.");
+        height = parseInt(height);
+        weight = parseInt(weight);
+        
+        function convertCmToMeter(height) {
+        var heightInM = height / 100;
+        return heightInM;
+        }
+
+        var heightM = convertCmToMeter(height);
+
+        function calculateBmi(heightM, weight) {
+            var bmiValue = weight / (heightM * heightM);
+            return bmiValue;
+        }
+
+        var bmi = calculateBmi(heightM, weight);
+        
+        function roundToOneFloat(bmi) {
+            var bmiGerundet = Math.round(bmi*10)/10;
+            return bmiGerundet;
+        }
+
+        var bmiWert = roundToOneFloat(bmi);
+
+        function getCategoryFromBMI(bmiWert) {
+            var bmiCategory = ["untergewichtig", "normalgewichtig", "übergewichtig", "adipös"];
+            if (bmiWert < 18.5) {
+                return bmiCategory[0];
+            } else if ((bmiWert >= 18.5) && (bmiWert <= 24.9)) {
+                return bmiCategory[1];
+            } else if((bmiWert >= 25) && (bmiWert < 30)){
+                return bmiCategory[2];
+            }else{
+                return bmiCategory[3];
+            }
+        }
+
+        var bmiCategory = getCategoryFromBMI(bmiWert);
+
+        function buildOutputString(bmiWert, bmiCategory){
+            console.log("Du hast einen BMI von " + bmiWert + ", das bedeutet du bist " + bmiCategory + ".");
+        }
+
+        buildOutputString(bmiWert, bmiCategory);
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>

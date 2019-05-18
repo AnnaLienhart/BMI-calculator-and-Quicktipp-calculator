@@ -1,0 +1,47 @@
+<!DOCtype <!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Lotto 6 aus 45</title>
+    <script>
+    /*
+    In folgendem Programm werden 6 zufällige Zahlen zwischen 1 und 45 aus einem Pool von 45 Zahlen gezogen.
+    Ausgegeben werden diese Zahlen in einem Array.
+    Der User kann über die Prompt-Funktion die Anzahl der gewünschten Tipps eingeben.
+    */
+    
+    function createLottoBalls(){ //Pool aus Lottobällen 1-45 wird erstellt 
+        var arrayLottoballPool = [];
+            for(var i = 0; i < 45; i++){
+                arrayLottoballPool[i] = i + 1; //i+1 damit Bälle von 1 bis 45 erstellt werden (Index 0 bis 44).
+            }
+        return arrayLottoballPool; //Bällepool[Array] wird zurückgegeben, um damit weiter arbeiten zu können.
+    }
+   
+    function randomNumbers(min, max){ //Die Zufallszahl wird erstellt.
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    function createQuickTipp(tip){
+        for(var x = 0; x < tip; x++){ //Anzahl der gewünschten Tips wird übernommen, Schleife wird entsprechend wiederholt.
+            var lottoballPool = createLottoBalls(); //Lottoballpool wird aufgerufen.
+            var arraySixRandomLottoballs = []; //Array für die Zufallsbälle wird erstellt.
+            for(var a = 0; a < 6; a++){ //6 Durchläufe, da 6 Bälle benötigt werden.
+                var randNumber = randomNumbers(0, lottoballPool.length - 1); //Zufallszahl wird aufgerufen.
+                arraySixRandomLottoballs[a] = lottoballPool.splice(randNumber, 1); //Array wird "befüllt", Durchläufe 0 bis <6, Zufallszahlen werden mittels splice ausgeschnitten, 1 = deleteCount, sprich ein Wert wird entfernt.
+            }
+        console.log("Ihr Quick-Tip ist: " + arraySixRandomLottoballs); //Tipps werden über Console ausgegeben.
+        }
+    }
+
+    var tip = prompt("Geben Sie die Anzahl der gewünschten Tipps ein."); //Anzahl der gewünschten Tipps wird eingegeben.
+
+    createQuickTipp(tip); //Funktion wird außerhalb aufgerufen.
+     
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
